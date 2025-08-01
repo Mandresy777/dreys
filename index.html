@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DREYS - Développement Web & Rédaction SEO</title>
+    <link rel="icon" href="https://i.postimg.cc/rw8jQ7Vz/D-REY-S-removebg-preview.png" type="image/png" sizes="512x512">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .popup-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .btn-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50 text-gray-800">
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="https://i.postimg.cc/rw8jQ7Vz/D-REY-S-removebg-preview.png" alt="DREYS Logo" class="h-32 mr-2">
+                <h1 class="text-3xl font-bold text-blue-600">DREYS</h1>
+            </div>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#home" class="text-blue-600 font-medium hover:text-blue-800">Accueil</a>
+                <a href="#about" class="text-gray-600 hover:text-blue-600">À propos</a>
+                <a href="#services" class="text-gray-600 hover:text-blue-600">Services</a>
+                <a href="#contact" class="text-gray-600 hover:text-blue-600">Contact</a>
+            </nav>
+            <button class="md:hidden text-gray-600">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="bg-blue-50 py-16 md:py-24">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-10 md:mb-0">
+                <h2 class="text-3xl md:text-4xl font-bold text-blue-800 mb-4">Bienvenue chez DREYS</h2>
+                <p class="text-xl text-gray-600 mb-6">Boostez votre présence en ligne avec un seul expert.</p>
+                <p class="text-gray-700 mb-8">"Développement Web. Rédaction SEO. Efficacité & Qualité."</p>
+                <a href="#services" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition duration-300 btn-hover inline-block">
+                    Voir mes services
+                </a>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <div class="bg-white p-6 rounded-xl shadow-lg max-w-md w-full">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-blue-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-laptop-code text-blue-600 text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold">Développement Web</h3>
+                    </div>
+                    <div class="flex items-center mb-4">
+                        <div class="bg-blue-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-pen-fancy text-blue-600 text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold">Rédaction SEO</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-blue-800 mb-12">À propos</h2>
+            <div class="max-w-3xl mx-auto bg-blue-50 rounded-xl p-8">
+                <div class="flex items-center mb-6">
+                    <div class="mr-4">
+                        <img src="https://i.postimg.cc/rs68G1LC/514690717-1069413685395257-7617554593624329967-n.png" alt="Fanantenana" class="w-16 h-16 rounded-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-semibold">Expert en développement web et rédaction web</h3>
+                </div>
+                <p class="text-gray-700 mb-6">
+                    Je suis Fanantenana, un professionnel passionné par le développement web et la rédaction web pour bien compléter vos sites web.
+                </p>
+                <p class="text-gray-700 mb-6">
+                    Avec plusieurs années d'expérience dans ces domaines, j'accompagne les entreprises dans la création de sites web performants et dans l'optimisation de leur présence en ligne à travers des contenus de qualité. 💻✍️
+                </p>
+                
+                <div class="mb-6">
+                    <div class="flex items-start mb-4">
+                        <div class="bg-blue-100 p-2 rounded-full mr-3 mt-1">
+                            <i class="fas fa-globe text-blue-600"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-lg mb-1">🌐 Développement Web :</h4>
+                            <ul class="list-disc pl-5 text-gray-700">
+                                <li class="mb-1">Création de sites web responsives et fonctionnels, adaptés à vos besoins et à vos utilisateurs</li>
+                                <li class="mb-1">Expertise en HTML, CSS, JavaScript pour des sites fluides et dynamiques</li>
+                                <li class="mb-1">Intégration de fonctionnalités avancées (formulaires, bases de données…)</li>
+                                <li class="mb-1">Maintenance et mise à jour des sites</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mb-6">
+                    <div class="flex items-start mb-4">
+                        <div class="bg-blue-100 p-2 rounded-full mr-3 mt-1">
+                            <i class="fas fa-pen text-blue-600"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-lg mb-1">📝 Rédaction Web :</h4>
+                            <ul class="list-disc pl-5 text-gray-700">
+                                <li class="mb-1">Contenus optimisés SEO pour une meilleure visibilité</li>
+                                <li class="mb-1">Articles de blog, fiches produits, textes corporate</li>
+                                <li class="mb-1">Ton adapté à votre cible + relecture et correction pro</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <p class="text-gray-700 mb-4">
+                    💡 Mon approche combine technique & stratégie de contenu pour des solutions complètes. Tarif : 15€/h
+                </p>
+                <p class="text-gray-700 font-medium">
+                    🚀 Je suis là pour vous aider à donner vie à vos projets !
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-blue-800 mb-12">Mes Services</h2>
+            
+            <!-- Rédaction Web SEO -->
+            <div class="max-w-4xl mx-auto mb-16">
+                <div class="flex items-center mb-6">
+                    <div class="bg-blue-600 text-white p-3 rounded-full mr-4">
+                        <i class="fas fa-pen-fancy text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold">Rédaction Web SEO</h3>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-md overflow-hidden mb-8 service-card transition duration-300">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h4 class="text-xl font-semibold">Rédaction SEO d'un article de 500 mots ou plus</h4>
+                                <p class="text-gray-600">Contenu optimisé SEO, bien documenté et adapté à votre cible</p>
+                            </div>
+                            <div class="bg-blue-100 text-blue-800 px-4 py-2 rounded-lg font-medium">
+                                15€ - délai 5 jours
+                            </div>
+                        </div>
+                        
+                        <div class="border-t border-gray-200 pt-4">
+                            <h5 class="font-medium mb-3">Autres options disponibles :</h5>
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full bg-white">
+                                    <thead class="bg-blue-50">
+                                        <tr>
+                                            <th class="py-2 px-4 text-left">Offre</th>
+                                            <th class="py-2 px-4 text-left">Description</th>
+                                            <th class="py-2 px-4 text-left">Prix</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-gray-200">
+                                        <tr>
+                                            <td class="py-2 px-4">Article long 1000 mots</td>
+                                            <td class="py-2 px-4">Pour aborder un sujet en profondeur</td>
+                                            <td class="py-2 px-4">30€</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="py-2 px-4">Article premium 1500 mots</td>
+                                            <td class="py-2 px-4">Article cornerstone, complet, visuel, documenté</td>
+                                            <td class="py-2 px-4">70€</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="py-2 px-4">Pack starter (4 x 500 mots)</td>
+                                            <td class="py-2 px-4">Pour alimenter un blog de façon régulière</td>
+                                            <td class="py-2 px-4">100€</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="py-2 px-4">Pack pro (8 x 500 mots)</td>
+                                            <td class="py-2 px-4">Stratégie éditoriale plus avancée</td>
+                                            <td class="py-2 px-4">200€</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="py-2 px-4">Pack ultra (12 x 500 mots)</td>
+                                            <td class="py-2 px-4">Rythme de contenu soutenu pour le SEO long terme</td>
+                                            <td class="py-2 px-4">300€</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="py-2 px-4">Intégration CMS</td>
+                                            <td class="py-2 px-4">Publication directe dans WordPress, Shopify, Wix…</td>
+                                            <td class="py-2 px-4">15€</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="py-2 px-4">Audit de mots-clés</td>
+                                            <td class="py-2 px-4">5 mots-clés puissants + analyse concurrentielle</td>
+                                            <td class="py-2 px-4">25€</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 text-center">
+                            <button onclick="openPopup()" class="bg-blue-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-blue-700 transition duration-300 btn-hover">
+                                Commander
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Site Web HTML sur mesure -->
+            <div class="max-w-4xl mx-auto">
+                <div class="flex items-center mb-6">
+                    <div class="bg-blue-600 text-white p-3 rounded-full mr-4">
+                        <i class="fas fa-laptop-code text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold">Site Web HTML sur mesure</h3>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-md overflow-hidden p-6 text-center service-card transition duration-300">
+                    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6">
+                        <div class="flex items-center justify-center">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-tools text-yellow-500 text-xl mr-3"></i>
+                            </div>
+                            <div>
+                                <p class="text-yellow-700 font-medium">🚧 Disponible prochainement</p>
+                                <p class="text-yellow-600">Ce service est en cours de préparation. Restez connecté !</p>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">Site web personnalisé, responsive et optimisé pour vos besoins spécifiques.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-blue-800 mb-12">Contact</h2>
+            
+            <div class="max-w-2xl mx-auto bg-blue-50 rounded-xl p-8">
+                <div class="mb-6">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-blue-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-user text-blue-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold">Nom complet</h3>
+                            <p class="text-gray-700">RABEARILALA Fanantenana Mandresy</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center mb-6">
+                        <div class="bg-blue-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-envelope text-blue-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold">Email</h3>
+                            <p class="text-gray-700">mandresyjob@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-blue-100 border-l-4 border-blue-500 p-4 mb-6">
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-comment-dots text-blue-600 text-xl mr-3"></i>
+                        </div>
+                        <div>
+                            <p class="text-blue-800">📩 Une question ou un projet ? Contactez-moi par mail. Je suis toujours à l'écoute de nouvelles collaborations sérieuses et motivées.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <a href="mailto:mandresyjob@gmail.com" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition duration-300 btn-hover inline-block">
+                        <i class="fas fa-paper-plane mr-2"></i> Envoyer un email
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <div class="flex items-center">
+                        <img src="https://i.postimg.cc/rw8jQ7Vz/D-REY-S-removebg-preview.png" alt="DREYS Logo" class="h-40 mr-3">
+                        <h2 class="text-3xl font-bold">DREYS</h2>
+                    </div>
+                    <p class="text-gray-400 mt-2">Boostez votre présence en ligne avec un seul expert.</p>
+                </div>
+                
+                <div class="mb-4 md:mb-0 text-center md:text-left">
+                    <h3 class="font-semibold mb-2">Liens rapides</h3>
+                    <div class="flex flex-col space-y-1">
+                        <a href="#home" class="text-gray-400 hover:text-white">Accueil</a>
+                        <a href="#services" class="text-gray-400 hover:text-white">Services</a>
+                        <a href="#contact" class="text-gray-400 hover:text-white">Contact</a>
+                    </div>
+                </div>
+                
+                <div class="text-center md:text-left">
+                    <h3 class="font-semibold mb-2">Mentions légales</h3>
+                    <p class="text-gray-400">Freelance basé à Madagascar</p>
+                    <p class="text-gray-400">DREYS © 2025</p>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
+                <p>Développé avec passion par DREYS</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Popup -->
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-semibold">💬 Commande en ligne</h3>
+                <button onclick="closePopup()" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <p class="mb-6">
+                Pour commander ce service, cliquez sur le bouton ci-dessous. Vous serez redirigé vers mon profil sécurisé sur ComeUp où vous pourrez finaliser votre demande.
+            </p>
+            <div class="text-center">
+                <a href="https://comeup.com/fr/service/486414/etre-votre-redacteur-et-vous-faire-la-redaction-seo-dun-article-de-500-mots-ou-plus" class="bg-blue-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-blue-700 transition duration-300 btn-hover inline-block" target="_blank">
+                    👉 Lien ComeUp
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openPopup() {
+            document.getElementById('popup').style.display = 'flex';
+        }
+        
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+        }
+        
+        // Close popup when clicking outside
+        window.onclick = function(event) {
+            const popup = document.getElementById('popup');
+            if (event.target == popup) {
+                popup.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
