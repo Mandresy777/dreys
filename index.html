@@ -36,50 +36,63 @@
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
+        .hero-bg {
+            background-image: linear-gradient(rgba(255, 215, 0, 0.1), rgba(255, 215, 0, 0.1)), 
+                              url('https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1964&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        @media (max-width: 768px) {
+            .hero-bg {
+                background-attachment: scroll;
+            }
+        }
     </style>
 </head>
-<body class="font-sans bg-gray-50 text-gray-800">
+<body class="font-sans bg-gray-100 text-gray-800">
     <!-- Header -->
-    <header class="bg-white shadow-sm">
+    <header class="bg-gradient-to-r from-amber-600 to-amber-800 shadow-lg">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <div class="flex items-center">
                 <img src="https://i.postimg.cc/rw8jQ7Vz/D-REY-S-removebg-preview.png" alt="DREYS Logo" class="h-32 mr-2">
-                <h1 class="text-3xl font-bold text-blue-600">DREYS</h1>
+                <h1 class="text-3xl font-bold text-white">DREYS</h1>
             </div>
             <nav class="hidden md:flex space-x-8">
-                <a href="#home" class="text-blue-600 font-medium hover:text-blue-800">Accueil</a>
-                <a href="#about" class="text-gray-600 hover:text-blue-600">À propos</a>
-                <a href="#services" class="text-gray-600 hover:text-blue-600">Services</a>
-                <a href="#contact" class="text-gray-600 hover:text-blue-600">Contact</a>
+                <a href="#home" class="text-white font-medium hover:text-amber-200">Accueil</a>
+                <a href="#about" class="text-gray-100 hover:text-amber-200">À propos</a>
+                <a href="#services" class="text-gray-100 hover:text-amber-200">Services</a>
+                <a href="#contact" class="text-gray-100 hover:text-amber-200">Contact</a>
             </nav>
-            <button class="md:hidden text-gray-600">
+            <button class="md:hidden text-white">
                 <i class="fas fa-bars text-xl"></i>
             </button>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section id="home" class="bg-blue-50 py-16 md:py-24">
-        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
+    <section id="home" class="hero-bg py-16 md:py-24 relative">
+        <div class="absolute inset-0 bg-gradient-to-r from-amber-800/30 to-slate-900/30"></div>
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center relative z-10">
             <div class="md:w-1/2 mb-10 md:mb-0">
-                <h2 class="text-3xl md:text-4xl font-bold text-blue-800 mb-4">Bienvenue chez DREYS</h2>
-                <p class="text-xl text-gray-600 mb-6">Boostez votre présence en ligne avec un seul expert.</p>
-                <p class="text-gray-700 mb-8">"Développement Web. Rédaction SEO. Efficacité & Qualité."</p>
-                <a href="#services" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition duration-300 btn-hover inline-block">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Bienvenue chez DREYS</h2>
+                <p class="text-xl text-amber-100 mb-6">Boostez votre présence en ligne avec un seul expert.</p>
+                <p class="text-white mb-8">"Développement Web. Rédaction SEO. Efficacité & Qualité."</p>
+                <a href="#services" class="bg-gradient-to-r from-amber-600 to-amber-800 text-white px-6 py-3 rounded-lg font-medium hover:from-amber-700 hover:to-amber-900 transition duration-300 btn-hover inline-block shadow-lg">
                     Voir mes services
                 </a>
             </div>
             <div class="md:w-1/2 flex justify-center">
-                <div class="bg-white p-6 rounded-xl shadow-lg max-w-md w-full">
+                <div class="bg-white/90 p-6 rounded-xl shadow-lg max-w-md w-full backdrop-blur-sm">
                     <div class="flex items-center mb-4">
-                        <div class="bg-blue-100 p-3 rounded-full mr-4">
-                            <i class="fas fa-laptop-code text-blue-600 text-xl"></i>
+                        <div class="bg-amber-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-laptop-code text-amber-600 text-xl"></i>
                         </div>
                         <h3 class="text-lg font-semibold">Développement Web</h3>
                     </div>
                     <div class="flex items-center mb-4">
-                        <div class="bg-blue-100 p-3 rounded-full mr-4">
-                            <i class="fas fa-pen-fancy text-blue-600 text-xl"></i>
+                        <div class="bg-amber-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-pen-fancy text-amber-600 text-xl"></i>
                         </div>
                         <h3 class="text-lg font-semibold">Rédaction SEO</h3>
                     </div>
@@ -91,13 +104,13 @@
     <!-- About Section -->
     <section id="about" class="py-16 bg-white">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center text-blue-800 mb-12">À propos</h2>
-            <div class="max-w-3xl mx-auto bg-blue-50 rounded-xl p-8">
+            <h2 class="text-3xl font-bold text-center text-amber-700 mb-12">À propos</h2>
+            <div class="max-w-3xl mx-auto bg-gradient-to-br from-amber-50 to-slate-50 rounded-xl p-8 shadow-md">
                 <div class="flex items-center mb-6">
                     <div class="mr-4">
-                        <img src="https://i.postimg.cc/rs68G1LC/514690717-1069413685395257-7617554593624329967-n.png" alt="Fanantenana" class="w-16 h-16 rounded-full object-cover">
+                        <img src="https://i.postimg.cc/rs68G1LC/514690717-1069413685395257-7617554593624329967-n.png" alt="Fanantenana" class="w-16 h-16 rounded-full object-cover border-2 border-amber-400">
                     </div>
-                    <h3 class="text-xl font-semibold">Expert en développement web et rédaction web</h3>
+                    <h3 class="text-xl font-semibold text-amber-800">Expert en développement web et rédaction web</h3>
                 </div>
                 <p class="text-gray-700 mb-6">
                     Je suis Fanantenana, un professionnel passionné par le développement web et la rédaction web pour bien compléter vos sites web.
@@ -105,14 +118,14 @@
                 <p class="text-gray-700 mb-6">
                     Avec plusieurs années d'expérience dans ces domaines, j'accompagne les entreprises dans la création de sites web performants et dans l'optimisation de leur présence en ligne à travers des contenus de qualité. 💻✍️
                 </p>
-                
+                                
                 <div class="mb-6">
                     <div class="flex items-start mb-4">
-                        <div class="bg-blue-100 p-2 rounded-full mr-3 mt-1">
-                            <i class="fas fa-globe text-blue-600"></i>
+                        <div class="bg-amber-100 p-2 rounded-full mr-3 mt-1">
+                            <i class="fas fa-globe text-amber-600"></i>
                         </div>
                         <div>
-                            <h4 class="font-semibold text-lg mb-1">🌐 Développement Web :</h4>
+                            <h4 class="font-semibold text-lg mb-1 text-amber-700">🌐 Développement Web :</h4>
                             <ul class="list-disc pl-5 text-gray-700">
                                 <li class="mb-1">Création de sites web responsives et fonctionnels, adaptés à vos besoins et à vos utilisateurs</li>
                                 <li class="mb-1">Expertise en HTML, CSS, JavaScript pour des sites fluides et dynamiques</li>
@@ -122,14 +135,14 @@
                         </div>
                     </div>
                 </div>
-                
+                                
                 <div class="mb-6">
                     <div class="flex items-start mb-4">
-                        <div class="bg-blue-100 p-2 rounded-full mr-3 mt-1">
-                            <i class="fas fa-pen text-blue-600"></i>
+                        <div class="bg-amber-100 p-2 rounded-full mr-3 mt-1">
+                            <i class="fas fa-pen text-amber-600"></i>
                         </div>
                         <div>
-                            <h4 class="font-semibold text-lg mb-1">📝 Rédaction Web :</h4>
+                            <h4 class="font-semibold text-lg mb-1 text-amber-700">📝 Rédaction Web :</h4>
                             <ul class="list-disc pl-5 text-gray-700">
                                 <li class="mb-1">Contenus optimisés SEO pour une meilleure visibilité</li>
                                 <li class="mb-1">Articles de blog, fiches produits, textes corporate</li>
@@ -138,7 +151,7 @@
                         </div>
                     </div>
                 </div>
-                
+                                
                 <p class="text-gray-700 mb-4">
                     💡 Mon approche combine technique & stratégie de contenu pour des solutions complètes. Tarif : 15€/h
                 </p>
@@ -150,110 +163,110 @@
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="py-16 bg-gray-50">
+    <section id="services" class="py-16 bg-gradient-to-b from-slate-100 to-slate-200">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center text-blue-800 mb-12">Mes Services</h2>
-            
+            <h2 class="text-3xl font-bold text-center text-amber-700 mb-12">Mes Services</h2>
+                        
             <!-- Rédaction Web SEO -->
             <div class="max-w-4xl mx-auto mb-16">
                 <div class="flex items-center mb-6">
-                    <div class="bg-blue-600 text-white p-3 rounded-full mr-4">
+                    <div class="bg-gradient-to-r from-amber-500 to-amber-700 text-white p-3 rounded-full mr-4 shadow-md">
                         <i class="fas fa-pen-fancy text-xl"></i>
                     </div>
-                    <h3 class="text-2xl font-semibold">Rédaction Web SEO</h3>
+                    <h3 class="text-2xl font-semibold text-amber-800">Rédaction Web SEO</h3>
                 </div>
-                
-                <div class="bg-white rounded-xl shadow-md overflow-hidden mb-8 service-card transition duration-300">
+                                
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-8 service-card transition duration-300 hover:shadow-xl">
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-4">
                             <div>
-                                <h4 class="text-xl font-semibold">Rédaction SEO d'un article de 500 mots ou plus</h4>
+                                <h4 class="text-xl font-semibold text-amber-800">Rédaction SEO d'un article de 500 mots ou plus</h4>
                                 <p class="text-gray-600">Contenu optimisé SEO, bien documenté et adapté à votre cible</p>
                             </div>
-                            <div class="bg-blue-100 text-blue-800 px-4 py-2 rounded-lg font-medium">
+                            <div class="bg-amber-100 text-amber-800 px-4 py-2 rounded-lg font-medium shadow-sm">
                                 15€ - délai 5 jours
                             </div>
                         </div>
-                        
+                                                
                         <div class="border-t border-gray-200 pt-4">
-                            <h5 class="font-medium mb-3">Autres options disponibles :</h5>
+                            <h5 class="font-medium mb-3 text-amber-700">Autres options disponibles :</h5>
                             <div class="overflow-x-auto">
                                 <table class="min-w-full bg-white">
-                                    <thead class="bg-blue-50">
+                                    <thead class="bg-gradient-to-r from-amber-50 to-slate-50">
                                         <tr>
-                                            <th class="py-2 px-4 text-left">Offre</th>
-                                            <th class="py-2 px-4 text-left">Description</th>
-                                            <th class="py-2 px-4 text-left">Prix</th>
+                                            <th class="py-2 px-4 text-left text-amber-700">Offre</th>
+                                            <th class="py-2 px-4 text-left text-amber-700">Description</th>
+                                            <th class="py-2 px-4 text-left text-amber-700">Prix</th>
                                         </tr>
                                     </thead>
                                     <tbody class="divide-y divide-gray-200">
                                         <tr>
                                             <td class="py-2 px-4">Article long 1000 mots</td>
                                             <td class="py-2 px-4">Pour aborder un sujet en profondeur</td>
-                                            <td class="py-2 px-4">30€</td>
+                                            <td class="py-2 px-4 font-medium text-amber-700">30€</td>
                                         </tr>
                                         <tr>
                                             <td class="py-2 px-4">Article premium 1500 mots</td>
                                             <td class="py-2 px-4">Article cornerstone, complet, visuel, documenté</td>
-                                            <td class="py-2 px-4">70€</td>
+                                            <td class="py-2 px-4 font-medium text-amber-700">70€</td>
                                         </tr>
                                         <tr>
                                             <td class="py-2 px-4">Pack starter (4 x 500 mots)</td>
                                             <td class="py-2 px-4">Pour alimenter un blog de façon régulière</td>
-                                            <td class="py-2 px-4">100€</td>
+                                            <td class="py-2 px-4 font-medium text-amber-700">100€</td>
                                         </tr>
                                         <tr>
                                             <td class="py-2 px-4">Pack pro (8 x 500 mots)</td>
                                             <td class="py-2 px-4">Stratégie éditoriale plus avancée</td>
-                                            <td class="py-2 px-4">200€</td>
+                                            <td class="py-2 px-4 font-medium text-amber-700">200€</td>
                                         </tr>
                                         <tr>
                                             <td class="py-2 px-4">Pack ultra (12 x 500 mots)</td>
                                             <td class="py-2 px-4">Rythme de contenu soutenu pour le SEO long terme</td>
-                                            <td class="py-2 px-4">300€</td>
+                                            <td class="py-2 px-4 font-medium text-amber-700">300€</td>
                                         </tr>
                                         <tr>
                                             <td class="py-2 px-4">Intégration CMS</td>
                                             <td class="py-2 px-4">Publication directe dans WordPress, Shopify, Wix…</td>
-                                            <td class="py-2 px-4">15€</td>
+                                            <td class="py-2 px-4 font-medium text-amber-700">15€</td>
                                         </tr>
                                         <tr>
                                             <td class="py-2 px-4">Audit de mots-clés</td>
                                             <td class="py-2 px-4">5 mots-clés puissants + analyse concurrentielle</td>
-                                            <td class="py-2 px-4">25€</td>
+                                            <td class="py-2 px-4 font-medium text-amber-700">25€</td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
-                        
+                                                
                         <div class="mt-6 text-center">
-                            <button onclick="openPopup()" class="bg-blue-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-blue-700 transition duration-300 btn-hover">
+                            <button onclick="openPopup()" class="bg-gradient-to-r from-amber-600 to-amber-800 text-white px-6 py-2 rounded-lg font-medium hover:from-amber-700 hover:to-amber-900 transition duration-300 btn-hover shadow-lg">
                                 Commander
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
-            
+                        
             <!-- Site Web HTML sur mesure -->
             <div class="max-w-4xl mx-auto">
                 <div class="flex items-center mb-6">
-                    <div class="bg-blue-600 text-white p-3 rounded-full mr-4">
+                    <div class="bg-gradient-to-r from-amber-500 to-amber-700 text-white p-3 rounded-full mr-4 shadow-md">
                         <i class="fas fa-laptop-code text-xl"></i>
                     </div>
-                    <h3 class="text-2xl font-semibold">Site Web HTML sur mesure</h3>
+                    <h3 class="text-2xl font-semibold text-amber-800">Site Web HTML sur mesure</h3>
                 </div>
-                
-                <div class="bg-white rounded-xl shadow-md overflow-hidden p-6 text-center service-card transition duration-300">
-                    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6">
+                                
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden p-6 text-center service-card transition duration-300 hover:shadow-xl">
+                    <div class="bg-amber-50 border-l-4 border-amber-400 p-4 mb-6">
                         <div class="flex items-center justify-center">
                             <div class="flex-shrink-0">
-                                <i class="fas fa-tools text-yellow-500 text-xl mr-3"></i>
+                                <i class="fas fa-tools text-amber-500 text-xl mr-3"></i>
                             </div>
                             <div>
-                                <p class="text-yellow-700 font-medium">🚧 Disponible prochainement</p>
-                                <p class="text-yellow-600">Ce service est en cours de préparation. Restez connecté !</p>
+                                <p class="text-amber-700 font-medium">🚧 Disponible prochainement</p>
+                                <p class="text-amber-600">Ce service est en cours de préparation. Restez connecté !</p>
                             </div>
                         </div>
                     </div>
@@ -264,46 +277,46 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-16 bg-white">
+    <section id="contact" class="py-16 bg-gradient-to-b from-slate-100 to-slate-200">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center text-blue-800 mb-12">Contact</h2>
-            
-            <div class="max-w-2xl mx-auto bg-blue-50 rounded-xl p-8">
+            <h2 class="text-3xl font-bold text-center text-amber-700 mb-12">Contact</h2>
+                        
+            <div class="max-w-2xl mx-auto bg-white rounded-xl shadow-lg p-8">
                 <div class="mb-6">
                     <div class="flex items-center mb-4">
-                        <div class="bg-blue-100 p-3 rounded-full mr-4">
-                            <i class="fas fa-user text-blue-600"></i>
+                        <div class="bg-amber-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-user text-amber-600"></i>
                         </div>
                         <div>
-                            <h3 class="text-lg font-semibold">Nom complet</h3>
+                            <h3 class="text-lg font-semibold text-amber-800">Nom complet</h3>
                             <p class="text-gray-700">RABEARILALA Fanantenana Mandresy</p>
                         </div>
                     </div>
-                    
+                                    
                     <div class="flex items-center mb-6">
-                        <div class="bg-blue-100 p-3 rounded-full mr-4">
-                            <i class="fas fa-envelope text-blue-600"></i>
+                        <div class="bg-amber-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-envelope text-amber-600"></i>
                         </div>
                         <div>
-                            <h3 class="text-lg font-semibold">Email</h3>
+                            <h3 class="text-lg font-semibold text-amber-800">Email</h3>
                             <p class="text-gray-700">mandresyjob@gmail.com</p>
                         </div>
                     </div>
                 </div>
-                
-                <div class="bg-blue-100 border-l-4 border-blue-500 p-4 mb-6">
+                                
+                <div class="bg-amber-50 border-l-4 border-amber-400 p-4 mb-6">
                     <div class="flex">
                         <div class="flex-shrink-0">
-                            <i class="fas fa-comment-dots text-blue-600 text-xl mr-3"></i>
+                            <i class="fas fa-comment-dots text-amber-600 text-xl mr-3"></i>
                         </div>
                         <div>
-                            <p class="text-blue-800">📩 Une question ou un projet ? Contactez-moi par mail. Je suis toujours à l'écoute de nouvelles collaborations sérieuses et motivées.</p>
+                            <p class="text-amber-800">📩 Une question ou un projet ? Contactez-moi par mail. Je suis toujours à l'écoute de nouvelles collaborations sérieuses et motivées.</p>
                         </div>
                     </div>
                 </div>
-                
+                                
                 <div class="text-center">
-                    <a href="mailto:mandresyjob@gmail.com" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition duration-300 btn-hover inline-block">
+                    <a href="mailto:mandresyjob@gmail.com" class="bg-gradient-to-r from-amber-600 to-amber-800 text-white px-6 py-3 rounded-lg font-medium hover:from-amber-700 hover:to-amber-900 transition duration-300 btn-hover shadow-lg">
                         <i class="fas fa-paper-plane mr-2"></i> Envoyer un email
                     </a>
                 </div>
@@ -312,34 +325,35 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-8">
+    <footer class="bg-gradient-to-r from-amber-800 to-amber-900 text-white py-8 shadow-lg">
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-4 md:mb-0">
                     <div class="flex items-center">
                         <img src="https://i.postimg.cc/rw8jQ7Vz/D-REY-S-removebg-preview.png" alt="DREYS Logo" class="h-40 mr-3">
-                        <h2 class="text-3xl font-bold">DREYS</h2>
+                        <h2 class="text-3xl font-bold text-white">DREYS</h2>
                     </div>
-                    <p class="text-gray-400 mt-2">Boostez votre présence en ligne avec un seul expert.</p>
+                    <p class="text-amber-100 mt-2">Boostez votre présence en ligne avec un seul expert.</p>
                 </div>
-                
+                                
                 <div class="mb-4 md:mb-0 text-center md:text-left">
-                    <h3 class="font-semibold mb-2">Liens rapides</h3>
+                    <h3 class="font-semibold mb-2 text-amber-200">Liens rapides</h3>
                     <div class="flex flex-col space-y-1">
-                        <a href="#home" class="text-gray-400 hover:text-white">Accueil</a>
-                        <a href="#services" class="text-gray-400 hover:text-white">Services</a>
-                        <a href="#contact" class="text-gray-400 hover:text-white">Contact</a>
+                        <a href="#home" class="text-amber-100 hover:text-white">Accueil</a>
+                        <a href="#services" class="text-amber-100 hover:text-white">Services</a>
+                        <a href="#contact" class="text-amber-100 hover:text-white">Contact</a>
                     </div>
                 </div>
-                
+                                
                 <div class="text-center md:text-left">
-                    <h3 class="font-semibold mb-2">Mentions légales</h3>
-                    <p class="text-gray-400">Freelance basé à Madagascar</p>
-                    <p class="text-gray-400">DREYS © 2025</p>
+                    <h3 class="font-semibold mb-2 text-amber-200">Contact</h3>
+                    <p class="text-amber-100">Freelance basé à Madagascar</p>
+                    <p class="text-amber-100">DREYS © 2025</p>
+                    <p class="text-amber-100">mandresyjob@gmail.com</p>
                 </div>
             </div>
-            
-            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
+                        
+            <div class="border-t border-amber-700 mt-8 pt-6 text-center text-amber-100">
                 <p>Développé avec passion par DREYS</p>
             </div>
         </div>
@@ -349,7 +363,7 @@
     <div id="popup" class="popup">
         <div class="popup-content">
             <div class="flex justify-between items-center mb-4">
-                <h3 class="text-xl font-semibold">💬 Commande en ligne</h3>
+                <h3 class="text-xl font-semibold text-amber-700">💬 Commande en ligne</h3>
                 <button onclick="closePopup()" class="text-gray-500 hover:text-gray-700">
                     <i class="fas fa-times"></i>
                 </button>
@@ -358,7 +372,7 @@
                 Pour commander ce service, cliquez sur le bouton ci-dessous. Vous serez redirigé vers mon profil sécurisé sur ComeUp où vous pourrez finaliser votre demande.
             </p>
             <div class="text-center">
-                <a href="https://comeup.com/fr/service/486414/etre-votre-redacteur-et-vous-faire-la-redaction-seo-dun-article-de-500-mots-ou-plus" class="bg-blue-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-blue-700 transition duration-300 btn-hover inline-block" target="_blank">
+                <a href="https://comeup.com/fr/service/486414/etre-votre-redacteur-et-vous-faire-la-redaction-seo-dun-article-de-500-mots-ou-plus" class="bg-gradient-to-r from-amber-600 to-amber-800 text-white px-6 py-2 rounded-lg font-medium hover:from-amber-700 hover:to-amber-900 transition duration-300 btn-hover shadow-lg inline-block" target="_blank">
                     👉 Lien ComeUp
                 </a>
             </div>
@@ -369,11 +383,11 @@
         function openPopup() {
             document.getElementById('popup').style.display = 'flex';
         }
-        
+                
         function closePopup() {
             document.getElementById('popup').style.display = 'none';
         }
-        
+                
         // Close popup when clicking outside
         window.onclick = function(event) {
             const popup = document.getElementById('popup');
