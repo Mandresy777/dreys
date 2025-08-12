@@ -1,828 +1,582 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DREYS - Développement Web & Rédaction SEO</title>
-    <link rel="icon" href="https://i.postimg.cc/XYXYkxMj/2k-ZR-q-KHS1-S2-UIYt-Xiqjj-A.png" type="image/png" sizes="512x512">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        .popup {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        .popup.show {
-            opacity: 1;
-        }
-        .popup-content {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 0.5rem;
-            max-width: 500px;
-            width: 90%;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transform: translateY(20px);
-            transition: transform 0.3s ease;
-        }
-        .popup.show .popup-content {
-            transform: translateY(0);
-        }
-        .btn-hover:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-        .hero-bg {
-            background-image: linear-gradient(rgba(240, 248, 255, 0.7), rgba(240, 248, 255, 0.7)),
-                               url('https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1964&q=80');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
-        @media (max-width: 768px) {
-            .hero-bg {
-                background-attachment: scroll;
-            }
-        }
-        .full-height-section {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        .section-padding {
-            padding-top: 6rem;
-            padding-bottom: 6rem;
-        }
-        
-        /* Obys-inspired animations */
-        .text-gradient {
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-        }
-        
-        .floating {
-            animation: floating 6s ease-in-out infinite;
-        }
-        
-        @keyframes floating {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
-        }
-        
-        .scale-in {
-            animation: scaleIn 0.5s ease-out forwards;
-        }
-        
-        @keyframes scaleIn {
-            0% { transform: scale(0.9); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-        
-        .slide-up {
-            animation: slideUp 0.8s cubic-bezier(0.19, 1, 0.22, 1) forwards;
-        }
-        
-        @keyframes slideUp {
-            0% { transform: translateY(50px); opacity: 0; }
-            100% { transform: translateY(0); opacity: 1; }
-        }
-        
-        .rotate-infinite {
-            animation: rotate 15s linear infinite;
-        }
-        
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        
-        .glow {
-            animation: glow 2s ease-in-out infinite alternate;
-        }
-        
-        @keyframes glow {
-            from { box-shadow: 0 0 5px rgba(30, 60, 110, 0.5); }
-            to { box-shadow: 0 0 20px rgba(30, 60, 110, 0.8); }
-        }
-        
-        /* Header animation */
-        .header-scroll {
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        /* Gradient text animation */
-        .gradient-text-animation {
-            background-image: linear-gradient(90deg, #1e3a8a, #0ea5e9, #1e3a8a);
-            background-size: 200% auto;
-            animation: gradientText 3s linear infinite;
-        }
-        
-        @keyframes gradientText {
-            0% { background-position: 0% center; }
-            100% { background-position: 200% center; }
-        }
-        
-        /* Hover effects */
-        .hover-scale {
-            transition: transform 0.3s ease;
-        }
-        
-        .hover-scale:hover {
-            transform: scale(1.03);
-        }
-        
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(to bottom, #1e3a8a, #0ea5e9);
-            border-radius: 10px;
-        }
-        
-        /* Section divider */
-        .section-divider {
-            position: relative;
-            height: 150px;
-            overflow: hidden;
-        }
-        
-        .section-divider svg {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            height: 100%;
-        }
-        
-        /* Logo container */
-        .logo-container {
-            background-color: white;
-            padding: 8px;
-            border-radius: 8px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        
-        /* Page transition */
-        .page {
-            display: none;
-            animation: fadeIn 0.5s ease-out forwards;
-        }
-        
-        .page.active {
-            display: block;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        /* Mobile menu */
-        .mobile-menu {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-        }
-        
-        .mobile-menu.open {
-            max-height: 500px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DREYS - Développement Web & Rédaction SEO</title>
+  <link rel="icon" href="https://i.postimg.cc/XYXYkxMj/2k-ZR-q-KHS1-S2-UIYt-Xiqjj-A.png" type="image/png" sizes="512x512">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    .popup { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease; }
+    .popup.show { opacity: 1; }
+    .popup-content { background-color: white; padding: 2rem; border-radius: 0.5rem; max-width: 500px; width: 90%; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transform: translateY(20px); transition: transform 0.3s ease; }
+    .popup.show .popup-content { transform: translateY(0); }
+    .btn-hover:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+    .service-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+    .hero-bg { background-image: linear-gradient(rgba(240, 248, 255, 0.7), rgba(240, 248, 255, 0.7)), url('https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1964&q=80'); background-size: cover; background-position: center; background-attachment: fixed; }
+    @media (max-width: 768px) { .hero-bg { background-attachment: scroll; } }
+    .full-height-section { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
+    .section-padding { padding-top: 6rem; padding-bottom: 6rem; }
+
+    .text-gradient { background-clip: text; -webkit-background-clip: text; color: transparent; }
+    .floating { animation: floating 6s ease-in-out infinite; }
+    @keyframes floating { 0% { transform: translateY(0px); } 50% { transform: translateY(-15px); } 100% { transform: translateY(0px); } }
+    .scale-in { animation: scaleIn 0.5s ease-out forwards; }
+    @keyframes scaleIn { 0% { transform: scale(0.9); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+    .slide-up { animation: slideUp 0.8s cubic-bezier(0.19, 1, 0.22, 1) forwards; }
+    @keyframes slideUp { 0% { transform: translateY(50px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
+    .rotate-infinite { animation: rotate 15s linear infinite; }
+    @keyframes rotate { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    .pulse { animation: pulse 2s infinite; }
+    @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+    .glow { animation: glow 2s ease-in-out infinite alternate; }
+    @keyframes glow { from { box-shadow: 0 0 5px rgba(30, 60, 110, 0.5); } to { box-shadow: 0 0 20px rgba(30, 60, 110, 0.8); } }
+    .header-scroll { background-color: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); }
+    .gradient-text-animation { background-image: linear-gradient(90deg, #1e3a8a, #0ea5e9, #1e3a8a); background-size: 200% auto; animation: gradientText 3s linear infinite; }
+    @keyframes gradientText { 0% { background-position: 0% center; } 100% { background-position: 200% center; } }
+    .hover-scale { transition: transform 0.3s ease; }
+    .hover-scale:hover { transform: scale(1.03); }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #f1f1f1; }
+    ::-webkit-scrollbar-thumb { background: linear-gradient(to bottom, #1e3a8a, #0ea5e9); border-radius: 10px; }
+    .section-divider { position: relative; height: 150px; overflow: hidden; }
+    .section-divider svg { position: absolute; bottom: 0; width: 100%; height: 100%; }
+    .logo-container { background-color: white; padding: 8px; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .page { display: none; animation: fadeIn 0.5s ease-out forwards; }
+    .page.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .mobile-menu { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
+    .mobile-menu.open { max-height: 500px; }
+  </style>
 </head>
 <body class="font-poppins bg-white text-gray-800 scroll-smooth">
-    <!-- Header -->
-    <header id="main-header" class="bg-white shadow-lg fixed w-full z-50 transition-all duration-300">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <div class="flex items-center hover-scale">
-                <div class="logo-container mr-2">
-                    <img src="https://i.postimg.cc/T1dFx7GB/2k-ZR-q-KHS1-S2-UIYt-Xiqjj-A-removebg-preview.png" alt="DREYS Logo" class="h-24 floating">
-                </div>
-                <h1 class="text-3xl font-bold text-blue-900">DREYS</h1>
-            </div>
-            <nav class="hidden md:flex space-x-8">
-                <a href="#home" class="nav-link text-blue-900 font-medium hover:text-blue-500 transition-colors duration-300" data-page="home">Accueil</a>
-                <a href="#about" class="nav-link text-blue-800 hover:text-blue-500 transition-colors duration-300" data-page="about">À propos</a>
-                <a href="#services" class="nav-link text-blue-800 hover:text-blue-500 transition-colors duration-300" data-page="services">Services</a>
-                <a href="#contact" class="nav-link text-blue-800 hover:text-blue-500 transition-colors duration-300" data-page="contact">Contact</a>
-            </nav>
-            <button id="mobile-menu-button" class="md:hidden text-blue-900 pulse">
-                <i class="fas fa-bars text-xl"></i>
-            </button>
+  <!-- Header -->
+  <header id="main-header" class="bg-white shadow-lg fixed w-full z-50 transition-all duration-300">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <div class="flex items-center hover-scale">
+        <div class="logo-container mr-2">
+          <img src="https://i.postimg.cc/T1dFx7GB/2k-ZR-q-KHS1-S2-UIYt-Xiqjj-A-removebg-preview.png" alt="DREYS Logo" class="h-24 floating">
         </div>
-        
-        <!-- Mobile menu -->
-        <div id="mobile-menu" class="mobile-menu md:hidden bg-white w-full px-4">
-            <div class="flex flex-col space-y-4 py-4">
-                <a href="#home" class="nav-link text-blue-900 font-medium hover:text-blue-500 transition-colors duration-300" data-page="home">Accueil</a>
-                <a href="#about" class="nav-link text-blue-800 hover:text-blue-500 transition-colors duration-300" data-page="about">À propos</a>
-                <a href="#services" class="nav-link text-blue-800 hover:text-blue-500 transition-colors duration-300" data-page="services">Services</a>
-                <a href="#contact" class="nav-link text-blue-800 hover:text-blue-500 transition-colors duration-300" data-page="contact">Contact</a>
-            </div>
-        </div>
-    </header>
-
-    <!-- Pages container -->
-    <div id="pages-container">
-        <!-- Home Page -->
-        <div id="home-page" class="page active">
-            <!-- Hero Section -->
-            <section id="home" class="hero-bg full-height-section relative pt-24 overflow-hidden">
-                <div class="absolute inset-0 bg-gradient-to-r from-amber-800/30 to-slate-900/30"></div>
-                
-                <!-- Floating elements -->
-                <div class="absolute top-1/4 left-1/4 w-16 h-16 rounded-full bg-amber-400/20 blur-xl animate-pulse"></div>
-                <div class="absolute bottom-1/3 right-1/4 w-24 h-24 rounded-full bg-amber-600/20 blur-xl animate-pulse delay-300"></div>
-                <div class="absolute top-1/3 right-1/3 w-20 h-20 rounded-full bg-white/10 blur-xl animate-pulse delay-700"></div>
-                
-                <div class="container mx-auto px-4 flex flex-col md:flex-row items-center relative z-10">
-                    <div class="md:w-1/2 mb-10 md:mb-0" data-aos="fade-right" data-aos-duration="800">
-                        <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 slide-up">
-                            <span class="gradient-text-animation text-gradient">Bienvenue chez DREYS</span>
-                        </h2>
-                        <p class="text-2xl text-amber-100 mb-8 slide-up" style="animation-delay: 0.2s">Boostez votre présence en ligne avec un seul expert.</p>
-                        <p class="text-white text-xl mb-10 slide-up" style="animation-delay: 0.4s">"Développement Web. Rédaction SEO. Efficacité & Qualité."</p>
-                        <a href="#services" class="nav-link bg-gradient-to-r from-amber-600 to-amber-800 text-white px-8 py-4 rounded-lg font-medium hover:from-amber-700 hover:to-amber-900 transition duration-300 btn-hover inline-block shadow-lg text-lg glow slide-up" style="animation-delay: 0.6s" data-page="services">
-                            Voir mes services
-                        </a>
-                    </div>
-                    <div class="md:w-1/2 flex justify-center" data-aos="fade-left" data-aos-duration="800" data-aos-delay="200">
-                        <div class="bg-white/90 p-8 rounded-xl shadow-lg max-w-md w-full backdrop-blur-sm hover-scale">
-                            <div class="flex items-center mb-6">
-                                <div class="bg-amber-100 p-4 rounded-full mr-4 rotate-infinite">
-                                    <i class="fas fa-laptop-code text-amber-600 text-2xl"></i>
-                                </div>
-                                <h3 class="text-xl font-semibold">Développement Web</h3>
-                            </div>
-                            <div class="flex items-center">
-                                <div class="bg-amber-100 p-4 rounded-full mr-4 rotate-infinite" style="animation-direction: reverse;">
-                                    <i class="fas fa-pen-fancy text-amber-600 text-2xl"></i>
-                                </div>
-                                <h3 class="text-xl font-semibold">Rédaction SEO</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Animated scroll indicator -->
-                <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-10">
-                    <div class="animate-bounce w-6 h-6 text-white">
-                        <i class="fas fa-chevron-down text-2xl"></i>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- About Page -->
-        <div id="about-page" class="page">
-            <!-- About Section -->
-            <section id="about" class="py-16 bg-white full-height-section section-padding relative overflow-hidden">
-                <!-- Floating background elements -->
-                <div class="absolute -left-20 -top-20 w-64 h-64 rounded-full bg-amber-100/20 blur-3xl"></div>
-                <div class="absolute -right-20 bottom-1/4 w-80 h-80 rounded-full bg-amber-200/10 blur-3xl"></div>
-                
-                <div class="container mx-auto px-4 relative z-10">
-                    <h2 class="text-4xl font-bold text-center text-amber-700 mb-16" data-aos="fade-up">À propos</h2>
-                    <div class="max-w-5xl mx-auto bg-gradient-to-br from-amber-50 to-slate-50 rounded-xl p-10 shadow-xl hover-scale" data-aos="zoom-in">
-                        <div class="flex items-center mb-8">
-                            <div class="mr-6">
-                                <img src="https://i.postimg.cc/rs68G1LC/514690717-1069413685395257-7617554593624329967-n.png" alt="Fanantenana" class="w-24 h-24 rounded-full object-cover border-4 border-amber-400 pulse">
-                            </div>
-                            <h3 class="text-2xl font-semibold text-amber-800">Expert en développement web et rédaction web</h3>
-                        </div>
-                        <p class="text-gray-700 text-lg mb-8">
-                            Je suis Fanantenana, un professionnel passionné par le développement web et la rédaction web pour bien compléter vos sites web.
-                        </p>
-                        <p class="text-gray-700 text-lg mb-8">
-                            Avec plusieurs années d'expérience dans ces domaines, j'accompagne les entreprises dans la création de sites web performants et dans l'optimisation de leur présence en ligne à travers des contenus de qualité.   💻✍️
-                        </p>
-                                                                                
-                        <div class="mb-8">
-                            <div class="flex items-start mb-6">
-                                <div class="bg-amber-100 p-3 rounded-full mr-4 mt-1 glow">
-                                    <i class="fas fa-globe text-amber-600 text-xl"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-xl mb-2 text-amber-700 gradient-text-animation text-gradient">🌐 Développement Web :</h4>
-                                    <ul class="list-disc pl-6 text-gray-700 text-lg space-y-2">
-                                        <li>C création de sites web responsives et fonctionnels, adaptés à vos besoins et à vos utilisateurs</li>
-                                        <li>Expertise en HTML, CSS, JavaScript pour des sites fluides et dynamiques</li>
-                                        <li>Intégration de fonctionnalités avancées (formulaires, bases de données…)</li>
-                                        <li>Maintenance et mise à jour des sites</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                                                                                
-                        <div class="mb-8">
-                            <div class="flex items-start mb-6">
-                                <div class="bg-amber-100 p-3 rounded-full mr-4 mt-1 glow">
-                                    <i class="fas fa-pen text-amber-600 text-xl"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-xl mb-2 text-amber-700 gradient-text-animation text-gradient">📝 Rédaction Web :</h4>
-                                    <ul class="list-disc pl-6 text-gray-700 text-lg space-y-2">
-                                        <li>Contenurs optimisés SEO pour une meilleure visibilité</li>
-                                        <li>Articles de blog, fiches produits, textes corporate</li>
-                                        <li>Ton adapté à votre cible + relecture et correction pro</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                                                                                
-                        <p class="text-gray-700 text-lg mb-6">
-                            💡 Mon approche combine technique & stratégie de contenu pour des solutions complètes. Tarif : 15€/h
-                        </p>
-                        <p class="text-gray-700 font-medium text-xl">
-                             Je suis là pour vous aider à donner vie à vos projets !
-                        </p>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- Services Page -->
-        <div id="services-page" class="page">
-            <!-- Services Section -->
-            <section id="services" class="py-16 bg-gradient-to-b from-slate-100 to-slate-200 full-height-section section-padding relative overflow-hidden">
-                <!-- Floating background elements -->
-                <div class="absolute -left-20 top-1/4 w-96 h-96 rounded-full bg-amber-100/20 blur-3xl"></div>
-                <div class="absolute -right-20 bottom-1/4 w-64 h-64 rounded-full bg-slate-200/20 blur-3xl"></div>
-                
-                <div class="container mx-auto px-4 relative z-10">
-                    <h2 class="text-4xl font-bold text-center text-amber-700 mb-16" data-aos="fade-up">Mes Services</h2>
-                                                                                    
-                    <!-- Rédaction Web SEO -->
-                    <div class="max-w-5xl mx-auto mb-20" data-aos="fade-up" data-aos-delay="100">
-                        <div class="flex items-center mb-8">
-                            <div class="bg-gradient-to-r from-amber-500 to-amber-700 text-white p-4 rounded-full mr-6 shadow-xl floating">
-                                <i class="fas fa-pen-fancy text-2xl"></i>
-                            </div>
-                            <h3 class="text-3xl font-semibold text-amber-800">Rédaction Web SEO</h3>
-                        </div>
-                                                                                                        
-                        <div class="bg-white rounded-xl shadow-2xl overflow-hidden mb-10 service-card transition duration-300 hover:shadow-2xl hover-scale">
-                            <div class="p-8">
-                                <div class="flex justify-between items-start mb-6">
-                                    <div>
-                                        <h4 class="text-2xl font-semibold text-amber-800 mb-2">Rédaction SEO d'un article de 500 mots ou plus</h4>
-                                        <p class="text-gray-600 text-lg">Contenu optimisé SEO, bien documenté et adapté à votre cible</p>
-                                    </div>
-                                    <div class="bg-amber-100 text-amber-800 px-6 py-3 rounded-lg font-medium shadow-md text-lg glow">
-                                        15€ - délai 5 jours
-                                    </div>
-                                </div>
-                                                                                                                                
-                                <div class="border-t border-gray-200 pt-6">
-                                    <h5 class="font-medium mb-4 text-amber-700 text-xl">Autres options disponibles :</h5>
-                                    <div class="overflow-x-auto">
-                                        <table class="min-w-full bg-white text-lg">
-                                            <thead class="bg-gradient-to-r from-amber-50 to-slate-50">
-                                                <tr>
-                                                    <th class="py-3 px-6 text-left text-amber-700 font-semibold">Offre</th>
-                                                    <th class="py-3 px-6 text-left text-amber-700 font-semibold">Description</th>
-                                                    <th class="py-3 px-6 text-left text-amber-700 font-semibold">Prix</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody class="divide-y divide-gray-200">
-                                                <tr class="hover:bg-amber-50 transition-colors duration-200">
-                                                    <td class="py-3 px-6">Article long 1000 mots</td>
-                                                    <td class="py-3 px-6">Pour aborder un sujet en profondeur</td>
-                                                    <td class="py-3 px-6 font-medium text-amber-700">30€</td>
-                                                </tr>
-                                                <tr class="hover:bg-amber-50 transition-colors duration-200">
-                                                    <td class="py-3 px-6">Article premium 1500 mots</td>
-                                                    <td class="py-3 px-6">Article cornerstone, complet, visuel, documenté</td>
-                                                    <td class="py-3 px-6 font-medium text-amber-700">70€</td>
-                                                </tr>
-                                                <tr class="hover:bg-amber-50 transition-colors duration-200">
-                                                    <td class="py-3 px-6">Pack starter (4 x 500 mots)</td>
-                                                    <td class="py-3 px-6">Pour alimenter un blog de façon régulière</td>
-                                                    <td class="py-3 px-6 font-medium text-amber-700">100€</td>
-                                                </tr>
-                                                <tr class="hover:bg-amber-50 transition-colors duration-200">
-                                                    <td class="py-3 px-6">Pack pro (8 x 500 mots)</td>
-                                                    <td class="py-3 px-6">Stratégie éditoriale plus avancée</td>
-                                                    <td class="py-3 px-6 font-medium text-amber-700">200€</td>
-                                                </tr>
-                                                <tr class="hover:bg-amber-50 transition-colors duration-200">
-                                                    <td class="py-3 px-6">Pack ultra (12 x 500 mots)</td>
-                                                    <td class="py-3 px-6">Rythme de contenu soutenu pour le SEO long terme</td>
-                                                    <td class="py-3 px-6 font-medium text-amber-700">300€</td>
-                                                </tr>
-                                                <tr class="hover:bg-amber-50 transition-colors duration-200">
-                                                    <td class="py-3 px-6">Intégration CMS</td>
-                                                    <td class="py-3 px-6">Publication directe dans WordPress, Shopify, Wix…</td>
-                                                    <td class="py-3 px-6 font-medium text-amber-700">15€</td>
-                                                </tr>
-                                                <tr class="hover:bg-amber-50 transition-colors duration-200">
-                                                    <td class="py-3 px-6">Audit de mots-clés</td>
-                                                    <td class="py-3 px-6">5 mots-clés puissants + analyse concurrentielle</td>
-                                                    <td class="py-3 px-6 font-medium text-amber-700">25€</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                                                                                                                
-                                <div class="mt-8 text-center">
-                                    <button onclick="openPopup('redaction')" class="bg-gradient-to-r from-amber-600 to-amber-800 text-white px-8 py-3 rounded-lg font-medium hover:from-amber-700 hover:to-amber-900 transition duration-300 btn-hover shadow-lg text-lg glow">
-                                        Commander
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                                                                                    
-                    <!-- Développement Web sur mesure -->
-                    <div class="max-w-5xl mx-auto mb-20" data-aos="fade-up" data-aos-delay="200">
-                        <div class="flex items-center mb-8">
-                            <div class="bg-gradient-to-r from-amber-500 to-amber-700 text-white p-4 rounded-full mr-6 shadow-xl floating">
-                                <i class="fas fa-laptop-code text-2xl"></i>
-                            </div>
-                            <h3 class="text-3xl font-semibold text-amber-800">Développement Web sur mesure</h3>
-                        </div>
-                                                                                                        
-                        <div class="bg-white rounded-xl shadow-2xl overflow-hidden mb-10 service-card transition duration-300 hover:shadow-2xl hover-scale">
-                            <div class="p-8">
-                                <div class="flex justify-between items-start mb-6">
-                                    <div>
-                                        <h4 class="text-2xl font-semibold text-amber-800 mb-2">Service basique</h4>
-                                        <p class="text-gray-600 text-lg">Création d'un site web personnalisé selon vos besoins</p>
-                                    </div>
-                                    <div class="bg-amber-100 text-amber-800 px-6 py-3 rounded-lg font-medium shadow-md text-lg glow">
-                                        100€ - délai 7 jours
-                                    </div>
-                                </div>
-                                                                                                                                
-                                <div class="border-t border-gray-200 pt-6">
-                                    <h5 class="font-medium mb-4 text-amber-700 text-xl">Options supplémentaires :</h5>
-                                    <div class="overflow-x-auto">
-                                        <table class="min-w-full bg-white text-lg">
-                                            <thead class="bg-gradient-to-r from-amber-50 to-slate-50">
-                                                <tr>
-                                                    <th class="py-3 px-6 text-left text-amber-700 font-semibold">Option</th>
-                                                    <th class="py-3 px-6 text-left text-amber-700 font-semibold">Description</th>
-                                                    <th class="py-3 px-6 text-left text-amber-700 font-semibold">Prix</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody class="divide-y divide-gray-200">
-                                                <tr class="hover:bg-amber-50 transition-colors duration-200">
-                                                    <td class="py-3 px-6">Page supplémentaire</td>
-                                                    <td class="py-3 px-6">Ajout d'une page supplémentaire</td>
-                                                    <td class="py-3 px-6 font-medium text-amber-700">+40€ (+2 jours)</td>
-                                                </tr>
-                                                <tr class="hover:bg-amber-50 transition-colors duration-200">
-                                                    <td class="py-3 px-6">Formulaire de contact avancé</td>
-                                                    <td class="py-3 px-6">Formulaire avec validation et notifications</td>
-                                                    <td class="py-3 px-6 font-medium text-amber-700">+30€ (+2 jours)</td>
-                                                </tr>
-                                                <tr class="hover:bg-amber-50 transition-colors duration-200">
-                                                    <td class="py-3 px-6">Animation et effets visuels</td>
-                                                    <td class="py-3 px-6">Effets CSS/JS pour améliorer l'expérience utilisateur</td>
-                                                    <td class="py-3 px-6 font-medium text-amber-700">+20€ (+2 jours)</td>
-                                                </tr>
-                                                <tr class="hover:bg-amber-50 transition-colors duration-200">
-                                                    <td class="py-3 px-6">Optimisation SEO avancée</td>
-                                                    <td class="py-3 px-6">Optimisation complète pour les moteurs de recherche</td>
-                                                    <td class="py-3 px-6 font-medium text-amber-700">+50€ (+2 jours)</td>
-                                                </tr>
-                                                <tr class="hover:bg-amber-50 transition-colors duration-200">
-                                                    <td class="py-3 px-6">Galerie d'images interactive</td>
-                                                    <td class="py-3 px-6">Galerie avec lightbox et effets de transition</td>
-                                                    <td class="py-3 px-6 font-medium text-amber-700">+35€ (+2 jours)</td>
-                                                </tr>
-                                                <tr class="hover:bg-amber-50 transition-colors duration-200">
-                                                    <td class="py-3 px-6">Intégration Google Maps</td>
-                                                    <td class="py-3 px-6">Carte interactive avec localisation</td>
-                                                    <td class="py-3 px-6 font-medium text-amber-700">+15€ (+1 jour)</td>
-                                                </tr>
-                                                <tr class="hover:bg-amber-50 transition-colors duration-200">
-                                                    <td class="py-3 px-6">Fourniture des fichiers sources</td>
-                                                    <td class="py-3 px-6">Accès aux fichiers HTML, CSS, JS originaux</td>
-                                                    <td class="py-3 px-6 font-medium text-amber-700">+30€</td>
-                                                </tr>
-                                                <tr class="hover:bg-amber-50 transition-colors duration-200">
-                                                    <td class="py-3 px-6">Site Vitrine</td>
-                                                    <td class="py-3 px-6">Site complet avec plusieurs pages et fonctionnalités</td>
-                                                    <td class="py-3 px-6 font-medium text-amber-700">+150€ (+14 jours)</td>
-                                                </tr>
-                                                <tr class="hover:bg-amber-50 transition-colors duration-200">
-                                                    <td class="py-3 px-6">Site Dynamique léger</td>
-                                                    <td class="py-3 px-6">Site avec fonctionnalités dynamiques simples</td>
-                                                    <td class="py-3 px-6 font-medium text-amber-700">+20 jours</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                                                                                                                
-                                <div class="mt-8 text-center">
-                                    <button onclick="openPopup('devweb')" class="bg-gradient-to-r from-amber-600 to-amber-800 text-white px-8 py-3 rounded-lg font-medium hover:from-amber-700 hover:to-amber-900 transition duration-300 btn-hover shadow-lg text-lg glow">
-                                        Commander
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- Contact Page -->
-        <div id="contact-page" class="page">
-            <!-- Contact Section -->
-            <section id="contact" class="py-16 bg-gradient-to-b from-slate-100 to-slate-200 full-height-section section-padding relative overflow-hidden">
-                <!-- Floating background elements -->
-                <div class="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-amber-100/20 blur-3xl"></div>
-                <div class="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full bg-slate-200/20 blur-3xl"></div>
-                
-                <div class="container mx-auto px-4 relative z-10">
-                    <h2 class="text-4xl font-bold text-center text-amber-700 mb-16" data-aos="fade-up">Contact</h2>
-                                                                                    
-                    <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-2xl p-10 hover-scale" data-aos="zoom-in">
-                        <div class="mb-8">
-                            <div class="flex items-center mb-6">
-                                <div class="bg-amber-100 p-4 rounded-full mr-6 glow">
-                                    <i class="fas fa-user text-amber-600 text-xl"></i>
-                                </div>
-                                <div>
-                                    <h3 class="text-xl font-semibold text-amber-800">Nom complet</h3>
-                                    <p class="text-gray-700 text-lg">RABEARILALA Fanantenana Mandresy</p>
-                                </div>
-                            </div>
-                                                                                                            
-                            <div class="flex items-center mb-8">
-                                <div class="bg-amber-100 p-4 rounded-full mr-6 glow">
-                                    <i class="fas fa-envelope text-amber-600 text-xl"></i>
-                                </div>
-                                <div>
-                                    <h3 class="text-xl font-semibold text-amber-800">Email</h3>
-                                    <p class="text-gray-700 text-lg">mandresyjob@gmail.com</p>
-                                </div>
-                            </div>
-                        </div>
-                                                                                                        
-                        <div class="bg-amber-50 border-l-4 border-amber-400 p-6 mb-8">
-                            <div class="flex">
-                                <div class="flex-shrink-0">
-                                    <i class="fas fa-comment-dots text-amber-600 text-2xl mr-4 pulse"></i>
-                                </div>
-                                <div>
-                                    <p class="text-amber-800 text-lg">📩 Une question ou un projet ? Contactez-moi par mail. Je suis toujours à l'écoute de nouvelles collaborations sérieuses et motivées.</p>
-                                </div>
-                            </div>
-                        </div>
-                                                                                                        
-                        <div class="text-center">
-                            <a href="mailto:mandresyjob@gmail.com" class="bg-gradient-to-r from-amber-600 to-amber-800 text-white px-8 py-4 rounded-lg font-medium hover:from-amber-700 hover:to-amber-900 transition duration-300 btn-hover shadow-lg text-lg inline-flex items-center glow">
-                                <i class="fas fa-paper-plane mr-3"></i> Envoyer un email
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
+        <h1 class="text-3xl font-bold text-blue-900">DREYS</h1>
+      </div>
+      <nav class="hidden md:flex space-x-8">
+        <a href="#home" class="nav-link text-blue-900 font-medium hover:text-blue-500 transition-colors duration-300" data-page="home">Accueil</a>
+        <a href="#about" class="nav-link text-blue-800 hover:text-blue-500 transition-colors duration-300" data-page="about">À propos</a>
+        <a href="#services" class="nav-link text-blue-800 hover:text-blue-500 transition-colors duration-300" data-page="services">Services</a>
+        <a href="#contact" class="nav-link text-blue-800 hover:text-blue-500 transition-colors duration-300" data-page="contact">Contact</a>
+      </nav>
+      <button id="mobile-menu-button" class="md:hidden text-blue-900 pulse">
+        <i class="fas fa-bars text-xl"></i>
+      </button>
     </div>
 
-    <!-- Footer -->
-    <footer class="bg-gradient-to-r from-gray-800 to-gray-900 text-white py-12 shadow-xl relative overflow-hidden">
-        <!-- Floating background elements -->
-        <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-amber-900/10 to-transparent"></div>
-                
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="mobile-menu md:hidden bg-white w-full px-4">
+      <div class="flex flex-col space-y-4 py-4">
+        <a href="#home" class="nav-link text-blue-900 font-medium hover:text-blue-500 transition-colors duration-300" data-page="home">Accueil</a>
+        <a href="#about" class="nav-link text-blue-800 hover:text-blue-500 transition-colors duration-300" data-page="about">À propos</a>
+        <a href="#services" class="nav-link text-blue-800 hover:text-blue-500 transition-colors duration-300" data-page="services">Services</a>
+        <a href="#contact" class="nav-link text-blue-800 hover:text-blue-500 transition-colors duration-300" data-page="contact">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Pages container -->
+  <div id="pages-container">
+    <!-- Home Page -->
+    <div id="home-page" class="page active">
+      <!-- Hero Section -->
+      <section id="home" class="hero-bg full-height-section relative pt-24 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-amber-800/30 to-slate-900/30"></div>
+
+        <!-- Floating elements -->
+        <div class="absolute top-1/4 left-1/4 w-16 h-16 rounded-full bg-amber-400/20 blur-xl animate-pulse"></div>
+        <div class="absolute bottom-1/3 right-1/4 w-24 h-24 rounded-full bg-amber-600/20 blur-xl animate-pulse delay-300"></div>
+        <div class="absolute top-1/3 right-1/3 w-20 h-20 rounded-full bg-white/10 blur-xl animate-pulse delay-700"></div>
+
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center relative z-10">
+          <div class="md:w-1/2 mb-10 md:mb-0" data-aos="fade-right" data-aos-duration="800">
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 slide-up">
+              <span class="gradient-text-animation text-gradient">Bienvenue chez DREYS</span>
+            </h2>
+            <p class="text-2xl text-amber-100 mb-8 slide-up" style="animation-delay: 0.2s">Boostez votre présence en ligne avec un seul expert.</p>
+            <p class="text-white text-xl mb-10 slide-up" style="animation-delay: 0.4s">"Développement Web. Rédaction SEO. Efficacité & Qualité."</p>
+            <a href="#services" class="nav-link bg-gradient-to-r from-amber-600 to-amber-800 text-white px-8 py-4 rounded-lg font-medium hover:from-amber-700 hover:to-amber-900 transition duration-300 btn-hover inline-block shadow-lg text-lg glow slide-up" style="animation-delay: 0.6s" data-page="services">
+              Voir mes services
+            </a>
+          </div>
+          <div class="md:w-1/2 flex justify-center" data-aos="fade-left" data-aos-duration="800" data-aos-delay="200">
+            <div class="bg-white/90 p-8 rounded-xl shadow-lg max-w-md w-full backdrop-blur-sm hover-scale">
+              <div class="flex items-center mb-6">
+                <div class="bg-amber-100 p-4 rounded-full mr-4 rotate-infinite">
+                  <i class="fas fa-laptop-code text-amber-600 text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold">Développement Web</h3>
+              </div>
+              <div class="flex items-center">
+                <div class="bg-amber-100 p-4 rounded-full mr-4 rotate-infinite" style="animation-direction: reverse;">
+                  <i class="fas fa-pen-fancy text-amber-600 text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold">Rédaction SEO</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Animated scroll indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-10">
+          <div class="animate-bounce w-6 h-6 text-white">
+            <i class="fas fa-chevron-down text-2xl"></i>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- About Page -->
+    <div id="about-page" class="page">
+      <!-- About Section -->
+      <section id="about" class="py-16 bg-white full-height-section section-padding relative overflow-hidden">
+        <div class="absolute -left-20 -top-20 w-64 h-64 rounded-full bg-amber-100/20 blur-3xl"></div>
+        <div class="absolute -right-20 bottom-1/4 w-80 h-80 rounded-full bg-amber-200/10 blur-3xl"></div>
+
         <div class="container mx-auto px-4 relative z-10">
-            <div class="flex flex-col md:flex-row justify-between items-center" data-aos="fade-up">
-                <div class="mb-8 md:mb-0">
-                <div class="flex items-center">
-                    <div class="logo-container mr-4">
-                        <img src="https://i.postimg.cc/T1dFx7GB/2k-ZR-q-KHS1-S2-UIYt-Xiqjj-A-removebg-preview.png" alt="DREYS Logo" class="h-32 floating">
-                    </div>
-                    <h2 class="text-4xl font-bold text-white">DREYS</h2>
-                </div>
-                    <p class="text-amber-100 mt-4 text-lg">Boostez votre présence en ligne avec un seul expert.</p>
-                </div>
-                                                                                
-                <div class="mb-8 md:mb-0 text-center md:text-left">
-                    <h3 class="font-semibold mb-4 text-amber-200 text-xl">Liens rapides</h3>
-                    <div class="flex flex-col space-y-2 text-lg">
-                        <a href="#home" class="nav-link text-amber-100 hover:text-white transition-colors duration-300" data-page="home">Accueil</a>
-                        <a href="#services" class="nav-link text-amber-100 hover:text-white transition-colors duration-300" data-page="services">Services</a>
-                        <a href="#contact" class="nav-link text-amber-100 hover:text-white transition-colors duration-300" data-page="contact">Contact</a>
-                    </div>
-                </div>
-                                                                                
-                <div class="text-center md:text-left">
-                    <h3 class="font-semibold mb-4 text-amber-200 text-xl">Contact</h3>
-                    <p class="text-amber-100 text-lg">Freelance basé à Madagascar</p>
-                    <p class="text-amber-100 text-lg">DREYS © 2025</p>
-                    <p class="text-amber-100 text-lg">mandresyjob@gmail.com</p>
-                </div>
+          <h2 class="text-4xl font-bold text-center text-amber-700 mb-16" data-aos="fade-up">À propos</h2>
+          <div class="max-w-5xl mx-auto bg-gradient-to-br from-amber-50 to-slate-50 rounded-xl p-10 shadow-xl hover-scale" data-aos="zoom-in">
+            <div class="flex items-center mb-8">
+              <div class="mr-6">
+                <img src="https://i.postimg.cc/rs68G1LC/514690717-1069413685395257-7617554593624329967-n.png" alt="Fanantenana" class="w-24 h-24 rounded-full object-cover border-4 border-amber-400 pulse">
+              </div>
+              <h3 class="text-2xl font-semibold text-amber-800">Expert en développement web et rédaction web</h3>
             </div>
-                                                                    
-            <div class="border-t border-amber-700 mt-12 pt-8 text-center text-amber-100 text-lg" data-aos="fade-up" data-aos-delay="100">
-                <p>Développé avec passion par DREYS</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Popup -->
-    <div id="popup" class="popup">
-        <div class="popup-content">
-            <div class="flex justify-between items-center mb-6">
-                <h3 class="text-2xl font-semibold text-amber-700">💬 Commande en ligne</h3>
-                <button onclick="closePopup()" class="text-gray-500 hover:text-gray-700 text-xl transition-colors duration-200">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <p class="mb-8 text-lg">
-                Pour commander ce service, cliquez sur le bouton ci-dessous. Vous serez redirigé vers mon profil sécurisé sur ComeUp où vous pourrez finaliser votre demande.
+            <p class="text-gray-700 text-lg mb-8">
+              Je suis Fanantenana, un professionnel passionné par le développement web et la rédaction web pour bien compléter vos sites web.
             </p>
-            <div class="text-center">
-                <a id="comeup-link" href="#" class="bg-gradient-to-r from-amber-600 to-amber-800 text-white px-8 py-3 rounded-lg font-medium hover:from-amber-700 hover:to-amber-900 transition duration-300 btn-hover shadow-lg inline-block text-lg glow" target="_blank">
-                     👉 Lien ComeUp
-                </a>
+            <p class="text-gray-700 text-lg mb-8">
+              Avec plusieurs années d'expérience dans ces domaines, j'accompagne les entreprises dans la création de sites web performants et dans l'optimisation de leur présence en ligne à travers des contenus de qualité.   💻✍️
+            </p>
+
+            <div class="mb-8">
+              <div class="flex items-start mb-6">
+                <div class="bg-amber-100 p-3 rounded-full mr-4 mt-1 glow">
+                  <i class="fas fa-globe text-amber-600 text-xl"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-xl mb-2 text-amber-700 gradient-text-animation text-gradient">🌐 Développement Web :</h4>
+                  <ul class="list-disc pl-6 text-gray-700 text-lg space-y-2">
+                    <li>C création de sites web responsives et fonctionnels, adaptés à vos besoins et à vos utilisateurs</li>
+                    <li>Expertise en HTML, CSS, JavaScript pour des sites fluides et dynamiques</li>
+                    <li>Intégration de fonctionnalités avancées (formulaires, bases de données…)</li>
+                    <li>Maintenance et mise à jour des sites</li>
+                  </ul>
+                </div>
+              </div>
             </div>
+
+            <div class="mb-8">
+              <div class="flex items-start mb-6">
+                <div class="bg-amber-100 p-3 rounded-full mr-4 mt-1 glow">
+                  <i class="fas fa-pen text-amber-600 text-xl"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-xl mb-2 text-amber-700 gradient-text-animation text-gradient">📝 Rédaction Web :</h4>
+                  <ul class="list-disc pl-6 text-gray-700 text-lg space-y-2">
+                    <li>Contenurs optimisés SEO pour une meilleure visibilité</li>
+                    <li>Articles de blog, fiches produits, textes corporate</li>
+                    <li>Ton adapté à votre cible + relecture et correction pro</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <p class="text-gray-700 text-lg mb-6">
+              💡 Mon approche combine technique & stratégie de contenu pour des solutions complètes. Tarif : 15€/h
+            </p>
+            <p class="text-gray-700 font-medium text-xl">
+              Je suis là pour vous aider à donner vie à vos projets !
+            </p>
+          </div>
         </div>
+      </section>
     </div>
 
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script>
-        // Initialize AOS (Animate On Scroll)
-        AOS.init({
-            duration: 800,
-            easing: 'ease-in-out',
-            once: true,
-            offset: 100
-        });
+    <!-- Services Page -->
+    <div id="services-page" class="page">
+      <!-- Services Section -->
+      <section id="services" class="py-16 bg-gradient-to-b from-slate-100 to-slate-200 full-height-section section-padding relative overflow-hidden">
+        <div class="absolute -left-20 top-1/4 w-96 h-96 rounded-full bg-amber-100/20 blur-3xl"></div>
+        <div class="absolute -right-20 bottom-1/4 w-64 h-64 rounded-full bg-slate-200/20 blur-3xl"></div>
 
-        // Mobile menu toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-                
-        mobileMenuButton.addEventListener('click', function() {
-            mobileMenu.classList.toggle('open');
-        });
+        <div class="container mx-auto px-4 relative z-10">
+          <h2 class="text-4xl font-bold text-center text-amber-700 mb-16" data-aos="fade-up">Mes Services</h2>
 
-        // Page navigation system
-        function navigateToPage(pageId) {
-            // Hide all pages
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
-                        
-            // Show the selected page
-            document.getElementById(pageId + '-page').classList.add('active');
-                        
-            // Close mobile menu if open
-            mobileMenu.classList.remove('open');
-                        
-            // Scroll to top
-            window.scrollTo(0, 0);
+          <!-- Rédaction Web SEO -->
+          <div class="max-w-5xl mx-auto mb-20" data-aos="fade-up" data-aos-delay="100">
+            <div class="flex items-center mb-8">
+              <div class="bg-gradient-to-r from-amber-500 to-amber-700 text-white p-4 rounded-full mr-6 shadow-xl floating">
+                <i class="fas fa-pen-fancy text-2xl"></i>
+              </div>
+              <h3 class="text-3xl font-semibold text-amber-800">Rédaction Web SEO</h3>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-2xl overflow-hidden mb-10 service-card transition duration-300 hover:shadow-2xl hover-scale">
+              <div class="p-8">
+                <div class="flex justify-between items-start mb-6">
+                  <div>
+                    <h4 class="text-2xl font-semibold text-amber-800 mb-2">Rédaction SEO d'un article de 500 mots ou plus</h4>
+                    <p class="text-gray-600 text-lg">Contenu optimisé SEO, bien documenté et adapté à votre cible</p>
+                  </div>
+                  <div class="bg-amber-100 text-amber-800 px-6 py-3 rounded-lg font-medium shadow-md text-lg glow">
+                    15€ - délai 5 jours
+                  </div>
+                </div>
+
+                <div class="border-t border-gray-200 pt-6">
+                  <h5 class="font-medium mb-4 text-amber-700 text-xl">Autres options disponibles :</h5>
+                  <div class="overflow-x-auto">
+                    <table class="min-w-full bg-white text-lg">
+                      <thead class="bg-gradient-to-r from-amber-50 to-slate-50">
+                        <tr>
+                          <th class="py-3 px-6 text-left text-amber-700 font-semibold">Offre</th>
+                          <th class="py-3 px-6 text-left text-amber-700 font-semibold">Description</th>
+                          <th class="py-3 px-6 text-left text-amber-700 font-semibold">Prix</th>
+                        </tr>
+                      </thead>
+                      <tbody class="divide-y divide-gray-200">
+                        <tr class="hover:bg-amber-50 transition-colors duration-200">
+                          <td class="py-3 px-6">Article long 1000 mots</td>
+                          <td class="py-3 px-6">Pour aborder un sujet en profondeur</td>
+                          <td class="py-3 px-6 font-medium text-amber-700">30€</td>
+                        </tr>
+                        <tr class="hover:bg-amber-50 transition-colors duration-200">
+                          <td class="py-3 px-6">Article premium 1500 mots</td>
+                          <td class="py-3 px-6">Article cornerstone, complet, visuel, documenté</td>
+                          <td class="py-3 px-6 font-medium text-amber-700">70€</td>
+                        </tr>
+                        <tr class="hover:bg-amber-50 transition-colors duration-200">
+                          <td class="py-3 px-6">Pack starter (4 x 500 mots)</td>
+                          <td class="py-3 px-6">Pour alimenter un blog de façon régulière</td>
+                          <td class="py-3 px-6 font-medium text-amber-700">100€</td>
+                        </tr>
+                        <tr class="hover:bg-amber-50 transition-colors duration-200">
+                          <td class="py-3 px-6">Pack pro (8 x 500 mots)</td>
+                          <td class="py-3 px-6">Stratégie éditoriale plus avancée</td>
+                          <td class="py-3 px-6 font-medium text-amber-700">200€</td>
+                        </tr>
+                        <tr class="hover:bg-amber-50 transition-colors duration-200">
+                          <td class="py-3 px-6">Pack ultra (12 x 500 mots)</td>
+                          <td class="py-3 px-6">Rythme de contenu soutenu pour le SEO long terme</td>
+                          <td class="py-3 px-6 font-medium text-amber-700">300€</td>
+                        </tr>
+                        <tr class="hover:bg-amber-50 transition-colors duration-200">
+                          <td class="py-3 px-6">Intégration CMS</td>
+                          <td class="py-3 px-6">Publication directe dans WordPress, Shopify, Wix…</td>
+                          <td class="py-3 px-6 font-medium text-amber-700">15€</td>
+                        </tr>
+                        <tr class="hover:bg-amber-50 transition-colors duration-200">
+                          <td class="py-3 px-6">Audit de mots-clés</td>
+                          <td class="py-3 px-6">5 mots-clés puissants + analyse concurrentielle</td>
+                          <td class="py-3 px-6 font-medium text-amber-700">25€</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <div class="mt-8 text-center">
+                  <button onclick="openPopup('redaction')" class="bg-gradient-to-r from-amber-600 to-amber-800 text-white px-8 py-3 rounded-lg font-medium hover:from-amber-700 hover:to-amber-900 transition duration-300 btn-hover shadow-lg text-lg glow">
+                    Commander
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Développement Web sur mesure -->
+          <div class="max-w-5xl mx-auto mb-20" data-aos="fade-up" data-aos-delay="200">
+            <div class="flex items-center mb-8">
+              <div class="bg-gradient-to-r from-amber-500 to-amber-700 text-white p-4 rounded-full mr-6 shadow-xl floating">
+                <i class="fas fa-laptop-code text-2xl"></i>
+              </div>
+              <h3 class="text-3xl font-semibold text-amber-800">Développement Web sur mesure</h3>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-2xl overflow-hidden mb-10 service-card transition duration-300 hover:shadow-2xl hover-scale">
+              <div class="p-8">
+                <div class="flex justify-between items-start mb-6">
+                  <div>
+                    <h4 class="text-2xl font-semibold text-amber-800 mb-2">Service basique</h4>
+                    <p class="text-gray-600 text-lg">Création d'un site web personnalisé selon vos besoins</p>
+                  </div>
+                  <div class="bg-amber-100 text-amber-800 px-6 py-3 rounded-lg font-medium shadow-md text-lg glow">
+                    100€ - délai 7 jours
+                  </div>
+                </div>
+
+                <div class="border-t border-gray-200 pt-6">
+                  <h5 class="font-medium mb-4 text-amber-700 text-xl">Options supplémentaires :</h5>
+                  <div class="overflow-x-auto">
+                    <table class="min-w-full bg-white text-lg">
+                      <thead class="bg-gradient-to-r from-amber-50 to-slate-50">
+                        <tr>
+                          <th class="py-3 px-6 text-left text-amber-700 font-semibold">Option</th>
+                          <th class="py-3 px-6 text-left text-amber-700 font-semibold">Description</th>
+                          <th class="py-3 px-6 text-left text-amber-700 font-semibold">Prix</th>
+                        </tr>
+                      </thead>
+                      <tbody class="divide-y divide-gray-200">
+                        <tr class="hover:bg-amber-50 transition-colors duration-200">
+                          <td class="py-3 px-6">Page supplémentaire</td>
+                          <td class="py-3 px-6">Ajout d'une page supplémentaire</td>
+                          <td class="py-3 px-6 font-medium text-amber-700">+40€ (+2 jours)</td>
+                        </tr>
+                        <tr class="hover:bg-amber-50 transition-colors duration-200">
+                          <td class="py-3 px-6">Formulaire de contact avancé</td>
+                          <td class="py-3 px-6">Formulaire avec validation et notifications</td>
+                          <td class="py-3 px-6 font-medium text-amber-700">+30€ (+2 jours)</td>
+                        </tr>
+                        <tr class="hover:bg-amber-50 transition-colors duration-200">
+                          <td class="py-3 px-6">Animation et effets visuels</td>
+                          <td class="py-3 px-6">Effets CSS/JS pour améliorer l'expérience utilisateur</td>
+                          <td class="py-3 px-6 font-medium text-amber-700">+20€ (+2 jours)</td>
+                        </tr>
+                        <tr class="hover:bg-amber-50 transition-colors duration-200">
+                          <td class="py-3 px-6">Optimisation SEO avancée</td>
+                          <td class="py-3 px-6">Optimisation complète pour les moteurs de recherche</td>
+                          <td class="py-3 px-6 font-medium text-amber-700">+50€ (+2 jours)</td>
+                        </tr>
+                        <tr class="hover:bg-amber-50 transition-colors duration-200">
+                          <td class="py-3 px-6">Galerie d'images interactive</td>
+                          <td class="py-3 px-6">Galerie avec lightbox et effets de transition</td>
+                          <td class="py-3 px-6 font-medium text-amber-700">+35€ (+2 jours)</td>
+                        </tr>
+                        <tr class="hover:bg-amber-50 transition-colors duration-200">
+                          <td class="py-3 px-6">Intégration Google Maps</td>
+                          <td class="py-3 px-6">Carte interactive avec localisation</td>
+                          <td class="py-3 px-6 font-medium text-amber-700">+15€ (+1 jour)</td>
+                        </tr>
+                        <tr class="hover:bg-amber-50 transition-colors duration-200">
+                          <td class="py-3 px-6">Fourniture des fichiers sources</td>
+                          <td class="py-3 px-6">Accès aux fichiers HTML, CSS, JS originaux</td>
+                          <td class="py-3 px-6 font-medium text-amber-700">+30€</td>
+                        </tr>
+                        <tr class="hover:bg-amber-50 transition-colors duration-200">
+                          <td class="py-3 px-6">Site Vitrine</td>
+                          <td class="py-3 px-6">Site complet avec plusieurs pages et fonctionnalités</td>
+                          <td class="py-3 px-6 font-medium text-amber-700">+150€ (+14 jours)</td>
+                        </tr>
+                        <tr class="hover:bg-amber-50 transition-colors duration-200">
+                          <td class="py-3 px-6">Site Dynamique léger</td>
+                          <td class="py-3 px-6">Site avec fonctionnalités dynamiques simples</td>
+                          <td class="py-3 px-6 font-medium text-amber-700">+20 jours</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <div class="mt-8 text-center">
+                  <button onclick="openPopup('devweb')" class="bg-gradient-to-r from-amber-600 to-amber-800 text-white px-8 py-3 rounded-lg font-medium hover:from-amber-700 hover:to-amber-900 transition duration-300 btn-hover shadow-lg text-lg glow">
+                    Commander
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Contact Page -->
+    <div id="contact-page" class="page">
+      <!-- Contact Section -->
+      <section id="contact" class="py-16 bg-gradient-to-b from-slate-100 to-slate-200 full-height-section section-padding relative overflow-hidden">
+        <div class="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-amber-100/20 blur-3xl"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full bg-slate-200/20 blur-3xl"></div>
+
+        <div class="container mx-auto px-4 relative z-10">
+          <h2 class="text-4xl font-bold text-center text-amber-700 mb-16" data-aos="fade-up">Contact</h2>
+
+          <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-2xl p-10 hover-scale" data-aos="zoom-in">
+            <div class="mb-8">
+              <div class="flex items-center mb-6">
+                <div class="bg-amber-100 p-4 rounded-full mr-6 glow">
+                  <i class="fas fa-user text-amber-600 text-xl"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-semibold text-amber-800">Nom complet</h3>
+                  <p class="text-gray-700 text-lg">RABEARILALA Fanantenana Mandresy</p>
+                </div>
+              </div>
+
+              <div class="flex items-center mb-8">
+                <div class="bg-amber-100 p-4 rounded-full mr-6 glow">
+                  <i class="fas fa-envelope text-amber-600 text-xl"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-semibold text-amber-800">Email</h3>
+                  <p class="text-gray-700 text-lg">mandresyjob@gmail.com</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-amber-50 border-l-4 border-amber-400 p-6 mb-8">
+              <div class="flex">
+                <div class="flex-shrink-0">
+                  <i class="fas fa-comment-dots text-amber-600 text-2xl mr-4 pulse"></i>
+                </div>
+                <div>
+                  <p class="text-amber-800 text-lg">📩 Une question ou un projet ? Contactez-moi par mail. Je suis toujours à l'écoute de nouvelles collaborations sérieuses et motivées.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="text-center">
+              <a href="mailto:mandresyjob@gmail.com" class="bg-gradient-to-r from-amber-600 to-amber-800 text-white px-8 py-4 rounded-lg font-medium hover:from-amber-700 hover:to-amber-900 transition duration-300 btn-hover shadow-lg text-lg inline-flex items-center glow">
+                <i class="fas fa-paper-plane mr-3"></i> Envoyer un email
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-gradient-to-r from-gray-800 to-gray-900 text-white py-12 shadow-xl relative overflow-hidden">
+    <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-amber-900/10 to-transparent"></div>
+
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="flex flex-col md:flex-row justify-between items-center" data-aos="fade-up">
+        <div class="mb-8 md:mb-0">
+          <div class="flex items-center">
+            <div class="logo-container mr-4">
+              <img src="https://i.postimg.cc/T1dFx7GB/2k-ZR-q-KHS1-S2-UIYt-Xiqjj-A-removebg-preview.png" alt="DREYS Logo" class="h-32 floating">
+            </div>
+            <h2 class="text-4xl font-bold text-white">DREYS</h2>
+          </div>
+          <p class="text-amber-100 mt-4 text-lg">Boostez votre présence en ligne avec un seul expert.</p>
+        </div>
+
+        <div class="mb-8 md:mb-0 text-center md:text-left">
+          <h3 class="font-semibold mb-4 text-amber-200 text-xl">Liens rapides</h3>
+          <div class="flex flex-col space-y-2 text-lg">
+            <a href="#home" class="nav-link text-amber-100 hover:text-white transition-colors duration-300" data-page="home">Accueil</a>
+            <a href="#services" class="nav-link text-amber-100 hover:text-white transition-colors duration-300" data-page="services">Services</a>
+            <a href="#contact" class="nav-link text-amber-100 hover:text-white transition-colors duration-300" data-page="contact">Contact</a>
+          </div>
+        </div>
+
+        <div class="text-center md:text-left">
+          <h3 class="font-semibold mb-4 text-amber-200 text-xl">Contact</h3>
+          <p class="text-amber-100 text-lg">Freelance basé à Madagascar</p>
+          <p class="text-amber-100 text-lg">DREYS © 2025</p>
+          <p class="text-amber-100 text-lg">mandresyjob@gmail.com</p>
+        </div>
+      </div>
+
+      <div class="border-t border-amber-700 mt-12 pt-8 text-center text-amber-100 text-lg" data-aos="fade-up" data-aos-delay="100">
+        <p>Développé avec passion par DREYS</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Popup -->
+  <div id="popup" class="popup">
+    <div class="popup-content">
+      <div class="flex justify-between items-center mb-6">
+        <h3 class="text-2xl font-semibold text-amber-700">💬 Commande en ligne</h3>
+        <button onclick="closePopup()" class="text-gray-500 hover:text-gray-700 text-xl transition-colors duration-200">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <p class="mb-8 text-lg">
+        Pour commander ce service, cliquez sur le bouton ci-dessous. Vous serez redirigé vers mon profil sécurisé sur ComeUp où vous pourrez finaliser votre demande.
+      </p>
+      <div class="text-center">
+        <a id="comeup-link" href="#" class="bg-gradient-to-r from-amber-600 to-amber-800 text-white px-8 py-3 rounded-lg font-medium hover:from-amber-700 hover:to-amber-900 transition duration-300 btn-hover shadow-lg inline-block text-lg glow" target="_blank"> 👉 Lien ComeUp </a>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    // Init AOS
+    AOS.init({ duration: 800, easing: 'ease-in-out', once: true, offset: 100 });
+
+    // Mobile menu toggle
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenuButton.addEventListener('click', function () {
+      mobileMenu.classList.toggle('open');
+    });
+
+    // Header scroll effect
+    const header = document.getElementById('main-header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 10) header.classList.add('header-scroll');
+      else header.classList.remove('header-scroll');
+    });
+
+    // Page navigation system
+    function navigateToPage(pageId) {
+      // Hide all pages
+      document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+      // Show selected page
+      const target = document.getElementById(pageId + '-page');
+      if (target) target.classList.add('active');
+      // Close mobile menu
+      mobileMenu.classList.remove('open');
+      // Scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Set up navigation links
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', function (e) {
+        const page = this.dataset.page;
+        if (page) {
+          e.preventDefault();
+          navigateToPage(page);
         }
+      });
+    });
 
-        // Set up navigation links
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const page = this.getAttribute('data-page');
-                navigateToPage(page);
-                                
-                // Update URL without reloading
-                history.pushState(null, null, '#' + page);
-            });
-        });
+    // URLs ComeUp
+    const comeupUrls = {
+      redaction: 'https://comeup.com/fr/service/486414/etre-votre-redacteur-et-vous-faire-la-redaction-seo-dun-article-de-500-mots-ou-plus',
+      devweb: 'https://comeup.com/fr/service/488071/coder-pour-developper-votre-site-internet-sur-mesure'
+    };
 
-        // Handle browser back/forward buttons
-        window.addEventListener('popstate', function() {
-            const hash = window.location.hash.substring(1);
-            if (hash) {
-                navigateToPage(hash);
-            } else {
-                navigateToPage('home');
-            }
-        });
+    // Popup handlers
+    function openPopup(type) {
+      const popup = document.getElementById('popup');
+      const link = document.getElementById('comeup-link');
+      link.href = comeupUrls[type] || '#';
+      link.target = '_blank';
+      link.rel = 'noopener';
 
-        // Check initial URL hash
-        document.addEventListener('DOMContentLoaded', function() {
-            const hash = window.location.hash.substring(1);
-            if (hash) {
-                navigateToPage(hash);
-            } else {
-                navigateToPage('home');
-            }
-        });
+      popup.style.display = 'flex';
+      requestAnimationFrame(() => popup.classList.add('show'));
+    }
 
-        function openPopup(serviceType) {
-            const popup = document.getElementById('popup');
-            const comeupLink = document.getElementById('comeup-link');
-            
-            // Set the correct link based on service type
-            if (serviceType === 'redaction') {
-                comeupLink.href = 'https://comeup.com/fr/service/486414/etre-votre-redacteur-et-vous-faire-la-redaction-seo-dun-article-de-500-mots-ou-plus';
-            } else if (serviceType === 'devweb') {
-                comeupLink.href = 'https://comeup.com/fr/service/488071/coder-pour-developper-votre-site-internet-sur-mesure';
-            }
-            
-            popup.style.display = 'flex';
-            setTimeout(() => {
-                popup.classList.add('show');
-            }, 10);
-        }
-                                                
-        function closePopup() {
-            const popup = document.getElementById('popup');
-            popup.classList.remove('show');
-            setTimeout(() => {
-                popup.style.display = 'none';
-            }, 300);
-        }
-                                                
-        // Close popup when clicking outside
-        window.onclick = function(event) {
-            const popup = document.getElementById('popup');
-            if (event.target == popup) {
-                closePopup();
-            }
-        }
+    function closePopup() {
+      const popup = document.getElementById('popup');
+      popup.classList.remove('show');
+      setTimeout(() => { popup.style.display = 'none'; }, 300);
+    }
 
-        // Smooth scrolling for anchor links within the same page
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                if (this.classList.contains('nav-link')) return;
-                                
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
+    // Close popup on outside click
+    document.getElementById('popup').addEventListener('click', (e) => {
+      if (e.target.id === 'popup') closePopup();
+    });
 
-        // Header scroll effect
-        const header = document.getElementById('main-header');
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > 100) {
-                header.classList.add('header-scroll');
-            } else {
-                header.classList.remove('header-scroll');
-            }
-        });
-
-        // Add slide-up animation to elements with class 'slide-up'
-        document.addEventListener('DOMContentLoaded', function() {
-            const slideUpElements = document.querySelectorAll('.slide-up');
-            slideUpElements.forEach((el, index) => {
-                el.style.animationDelay = `${index * 0.2}s`;
-            });
-        });
-
-        // Parallax effect for floating elements
-        document.addEventListener('mousemove', function(e) {
-            const floatingElements = document.querySelectorAll('.floating');
-            floatingElements.forEach(el => {
-                const speed = el.getAttribute('data-speed') || 5;
-                const x = (window.innerWidth - e.pageX * speed) / 100;
-                const y = (window.innerHeight - e.pageY * speed) / 100;
-                el.style.transform = `translateX(${x}px) translateY(${y}px)`;
-            });
-        });
-    </script>
+    // Close popup on Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closePopup();
+    });
+  </script>
 </body>
 </html>
